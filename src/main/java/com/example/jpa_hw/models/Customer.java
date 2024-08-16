@@ -1,5 +1,6 @@
 package com.example.jpa_hw.models;
 
+import com.example.jpa_hw.models.dto.response.customer.CustomerResponseDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +26,14 @@ public class Customer {
     private Email email;
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
+
+//    public CustomerResponseDTO toDto() {
+//        return CustomerResponseDTO.builder()
+//                .customerId(this.customerId)
+//                .email(this.email)
+//                .customerName(this.customerName)
+//                .address(this.address)
+//                .phoneNumber(this.phoneNumber)
+//                .build();
+//    }
 }

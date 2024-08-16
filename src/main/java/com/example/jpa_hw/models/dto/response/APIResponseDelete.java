@@ -8,14 +8,12 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class APIResponseALL<T>{
-    String message;
-    int totalRecords;
-    T payload;
-    HttpStatus status;
-    LocalDateTime time;
+public class APIResponseDelete {
+    private String mesage;
+    private LocalDateTime time;
+    private HttpStatus status;
 }

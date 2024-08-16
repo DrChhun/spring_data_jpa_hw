@@ -1,5 +1,6 @@
 package com.example.jpa_hw.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,5 +19,6 @@ public class Email {
     @Column(unique = true)
     private String email;
     @OneToOne(mappedBy = "email", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Customer customer;
 }

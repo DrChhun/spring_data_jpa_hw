@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.time.LocalDateTime;
 
 public class GetResponse {
-    public static ResponseEntity<?> responseAll(String message, Object data, Long totalRecord) {
+    public static ResponseEntity<?> responseAll(String message, Object data, int totalRecord) {
         return ResponseEntity.status(HttpStatus.OK).body(APIResponseALL.builder()
                 .totalRecords(totalRecord)
                 .message(message)
@@ -31,6 +31,14 @@ public class GetResponse {
                 .payload(data)
                 .time(LocalDateTime.now())
                 .status(HttpStatus.CREATED)
+                .build());
+    }
+
+    public static ResponseEntity<?> responseDelete(String message) {
+        return ResponseEntity.status(HttpStatus.OK).body(APIResponseDelete.builder()
+                .mesage(message)
+                .status(HttpStatus.OK)
+                .time(LocalDateTime.now())
                 .build());
     }
 }
