@@ -1,5 +1,6 @@
 package com.example.jpa_hw.controller;
 
+import com.example.jpa_hw.models.constant.OrderDirection;
 import com.example.jpa_hw.models.dto.request.CustomerRequest;
 import com.example.jpa_hw.models.dto.response.GetResponse;
 import com.example.jpa_hw.repository.CustomerRepository;
@@ -26,13 +27,14 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<?> getAllCustomers(
-            @RequestParam("pageNumber") int pageNumber,
-            @RequestParam("pageSize") int pageSize
-    ) {
+            @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+            @RequestParam(defaultValue = "ASC")OrderDirection orderDirection
+            ) {
         return GetResponse.responseAll(
                 "Successfully get all customers",
-                customerService.getAllCustomers(pageNumber, pageSize),
-                customerService.getAllCustomers(pageNumber, pageSize).size()
+                customerService.getAllCustomers(pageNumber, pageSize, orderDirection.name()),
+                customerService.getAllCustomers(pageNumber, pageSize, orderDirection.name()).size()
         );
     }
 

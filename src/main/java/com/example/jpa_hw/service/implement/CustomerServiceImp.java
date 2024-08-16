@@ -11,6 +11,7 @@ import com.example.jpa_hw.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,8 +57,8 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
-    public List<Customer> getAllCustomers(int pageNumber, int pageSize) {
-        Page<Customer> page = customerRepository.findAll(PageRequest.of(pageNumber, pageSize));
+    public List<Customer> getAllCustomers(int pageNumber, int pageSize, String sortOrder) {
+        Page<Customer> page = customerRepository.findAll(PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.fromString(sortOrder), "customerId")));
         return page.getContent();
     }
 

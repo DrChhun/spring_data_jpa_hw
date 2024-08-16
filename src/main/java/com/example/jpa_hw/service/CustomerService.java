@@ -9,7 +9,7 @@ import java.util.List;
 public interface CustomerService {
     CustomerResponseDTO createCustomer(CustomerRequest data);
 
-    List<Customer> getAllCustomers(int pageNumber, int pageSize);
+    List<Customer> getAllCustomers(int pageNumber, int pageSize, String orderDirection);
 
     void deleteCustomer(Long id);
 
