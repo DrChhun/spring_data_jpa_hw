@@ -16,6 +16,7 @@ import com.example.jpa_hw.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -92,15 +93,6 @@ public class OrderServiceImp implements OrderService {
                 .totalAmount(totalPrice.floatValue())
                 .build();
 
-//        ProductOrder trackOrder = ProductOrder.builder()
-//                .id(null)
-//                .quantity(orderRequests.getFirst().getQuantity())
-//                .order(saveOrder)
-//                .product(listOfProduct.getFirst())
-//                .build();
-//
-//        productOrderRepository.save(trackOrder);
-
         orderRequests.forEach(orderRequest -> {
             Product product = productMap.get(orderRequest.getProductId());
             if (product != null) {
@@ -139,9 +131,30 @@ public class OrderServiceImp implements OrderService {
         return orderRes;
     }
 
-//    @Override
-//    public List<Object> getOrderByCustomerId(Long id) {
-//        List<?> orderByCustomer = orderRepository.findByCustomer_CustomerId(id);
-//        return List.of(orderByCustomer);
-//    }
+    @Override
+    public List<Object> getOrderByCustomerId(Long id) {
+        List<?> orderByCustomer = orderRepository.findByCustomerCustomerId(id);
+        return List.of(orderByCustomer);
+    }
+
+    @Override
+    public OrderResponseDTO updateStatusByOrderId(Long id, OrderStatusEnum status) {
+        Optional<Order> resultOrder = orderRepository.findById(id);
+        Order updateOrder = Order.builder()
+                .orderId(resultOrder.get().getOrderId())
+                .productOrders(resultOrder.get().getProductOrders())
+                .orderDate(resultOrder.get().getOrderDate())
+                .orderStatus(status)
+                .totalAmount(resultOrder.get().getTotalAmount())
+                .build();
+        Order gg = orderRepository.save(updateOrder);
+        OrderResponseDTO map = OrderResponseDTO.builder()
+                .orderId(gg.getOrderId())
+                .orderDate(gg.getOrderDate())
+                .orderStatus(gg.getOrderStatus())
+                .totalAmount(gg.getTotalAmount())
+                .productOrders(null)
+                .build();
+        return map;
+    }
 }

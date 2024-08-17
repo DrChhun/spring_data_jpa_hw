@@ -2,7 +2,6 @@ package com.example.jpa_hw.service;
 
 import com.example.jpa_hw.models.Customer;
 import com.example.jpa_hw.models.dto.request.CustomerRequest;
-import com.example.jpa_hw.models.dto.response.customer.CustomerDTO;
 import com.example.jpa_hw.models.dto.response.customer.CustomerResponseDTO;
 
 import java.util.List;

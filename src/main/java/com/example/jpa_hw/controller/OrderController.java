@@ -1,5 +1,6 @@
 package com.example.jpa_hw.controller;
 
+import com.example.jpa_hw.models.constant.OrderStatusEnum;
 import com.example.jpa_hw.models.dto.request.OrderRequest;
 import com.example.jpa_hw.models.dto.response.GetResponse;
 import com.example.jpa_hw.service.OrderService;
@@ -34,11 +35,19 @@ public class OrderController {
         );
     }
 
-//    @GetMapping("/customer/{id}")
-//    public ResponseEntity<?> getOrderByCustomerId(@PathVariable("id") Long id) {
-//        return GetResponse.responseList(
-//                "Successfully get order by customer",
-//                orderService.getOrderByCustomerId(id)
-//        );
-//    }
+    @GetMapping("/customer/{id}")
+    public ResponseEntity<?> getOrderByCustomerId(@PathVariable("id") Long id) {
+        return GetResponse.responseList(
+                "Successfully get order by customer",
+                orderService.getOrderByCustomerId(id)
+        );
+    }
+
+    @PutMapping("/order/{id}")
+    public ResponseEntity<?> updateStatusByOrderId(@PathVariable("id") Long id, @RequestParam("status")OrderStatusEnum status) {
+        return GetResponse.responseOnce(
+          "Successfully update status",
+          orderService.updateStatusByOrderId(id, status)
+        );
+    }
 }

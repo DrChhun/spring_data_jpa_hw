@@ -1,6 +1,7 @@
 package com.example.jpa_hw.service;
 
 import com.example.jpa_hw.models.Order;
+import com.example.jpa_hw.models.constant.OrderStatusEnum;
 import com.example.jpa_hw.models.dto.request.OrderRequest;
 import com.example.jpa_hw.models.dto.response.order.OrderResponseDTO;
 
@@ -11,5 +12,7 @@ public interface OrderService {
 
     OrderResponseDTO getOrderById(Long id);
 
-//    List<Object> getOrderByCustomerId(Long id);
+    List<Object> getOrderByCustomerId(Long id);
+
+    OrderResponseDTO updateStatusByOrderId(Long id, OrderStatusEnum status);
 }

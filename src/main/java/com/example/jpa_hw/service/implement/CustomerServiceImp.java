@@ -6,6 +6,7 @@ import com.example.jpa_hw.models.dto.request.CustomerRequest;
 import com.example.jpa_hw.models.dto.response.customer.CustomerDTO;
 import com.example.jpa_hw.models.dto.response.customer.CustomerResponseDTO;
 import com.example.jpa_hw.models.dto.response.email.EmailResponseDTO;
+import com.example.jpa_hw.models.dto.response.order.OrderDTO;
 import com.example.jpa_hw.repository.CustomerRepository;
 import com.example.jpa_hw.repository.EmailRepository;
 import com.example.jpa_hw.service.CustomerService;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor

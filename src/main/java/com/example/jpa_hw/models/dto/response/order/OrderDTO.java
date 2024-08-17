@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,7 +16,7 @@ import java.util.List;
 @Data
 public class OrderDTO {
     private Long orderId;
-    private String orderDate;
+    private LocalDateTime orderDate;
     private Float totalAmount;
     private OrderStatusEnum status;
     private List<ProductOrderDTO> productList;
