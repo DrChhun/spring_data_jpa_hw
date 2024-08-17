@@ -33,16 +33,6 @@ public class Order {
     @JsonIgnore
     private Customer customer;
     @OneToMany(mappedBy = "order")
+    @JsonIgnore
     private List<ProductOrder> productOrders;
-
-    // Method to convert Order entity to OrderDTO
-//    public OrderResponseDTO toDto() {
-//        return OrderResponseDTO.builder()
-//                .orderId(this.orderId)
-//                .orderDate(this.orderDate)
-//                .totalAmount(this.totalAmount)
-//                .orderStatus(this.orderStatus)
-//                .productOrders(this.productOrders != null ? this.productOrders.stream().map(ProductOrder::toDto).collect(Collectors.toList()) : null)
-//                .build();
-//    }
 }

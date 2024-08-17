@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class GetResponse {
     public static ResponseEntity<?> responseAll(String message, Object data, int totalRecord) {
@@ -39,6 +40,15 @@ public class GetResponse {
                 .mesage(message)
                 .status(HttpStatus.OK)
                 .time(LocalDateTime.now())
+                .build());
+    }
+
+    public static ResponseEntity<?> responseList(String message, List<Object> payload) {
+        return ResponseEntity.status(HttpStatus.OK).body(APIResponseList.builder()
+                .message(message)
+                .status(HttpStatus.OK)
+                .time(LocalDateTime.now())
+                .payload(payload)
                 .build());
     }
 }
